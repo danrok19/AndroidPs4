@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="task_item_padding">3dp</dimen>
+    <dimen name="task_item_size">25sp</dimen>
+    <dimen name="task_item_left_margin">10dp</dimen>
+</resources>
