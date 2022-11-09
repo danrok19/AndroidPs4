@@ -1,5 +1,8 @@
 package com.example.androidps3;
 
+import static android.app.Activity.RESULT_OK;
+import static android.content.Intent.getIntent;
+
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -34,6 +37,7 @@ public class TaskListFragment extends Fragment {
     private boolean subtitleVisible;
 
     public static final String KEY_EXTRA_TASK_ID = "KEY_EXTRA_TASK_ID";
+    public static final String KEY_EXTRA_VISIBLE = "KEY_EXTRA_VISIBLE";
 
 
     @Override
@@ -43,6 +47,7 @@ public class TaskListFragment extends Fragment {
         MenuItem subtitleItem = menu.findItem(R.id.show_subtitle);
         if(subtitleVisible){
             subtitleItem.setTitle(R.string.hide_subtitle);
+            updateSubtitle();
         }
         else{
             subtitleItem.setTitle(R.string.show_subtitle);
@@ -189,13 +194,16 @@ public class TaskListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(savedInstanceState != null){
+            subtitleVisible = savedInstanceState.getBoolean(KEY_EXTRA_VISIBLE);
+        }
         setHasOptionsMenu(true);
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean("subtitleVisible", subtitleVisible);
+        outState.putBoolean(KEY_EXTRA_VISIBLE, subtitleVisible);
     }
 
 
